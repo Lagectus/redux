@@ -1,3 +1,5 @@
 demoeffect/node_modules
 ecom/node_modules
 redix/node_modules
+**.log
+build
