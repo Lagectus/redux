@@ -7,6 +7,8 @@ const counterSlice = createSlice({
             state.value += 1
         },
         decrement: (state,acn) => {
+            console.log(acn);
+            
             state.value -= acn.payload
         }
     }
