@@ -11,6 +11,10 @@ let nextId = 1;       // simple incremental id
 
 // 🔍 Read all
 app.get('/api/todos', (req, res) => {
+   req.params  // { _limit: '5' }
+   function getData(){
+    return todos.slice(0, Number(req.query._limit) || todos.length);
+   }
   res.json(todos);
 });
 

@@ -13,7 +13,8 @@ export const api = createApi({
             query:(task)=>({
                 url:"/todos",
                 method:"POST",
-                body:task
+                body:task,
+                
             })
         }),
         // invalidateTags: ["Tasks"]

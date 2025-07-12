@@ -4,6 +4,8 @@ import { useAddTaskMutation, useGetTasksQuery } from './apiSlice';
 function App() {
   const [task, setTask] = useState('');
   const { isLoading, isError, data, error, refetch } = useGetTasksQuery();
+  console.log(useGetTasksQuery(), "useGetTasksQuery");
+  
   const [addTask] = useAddTaskMutation();
 
   const handleAdd = async () => {

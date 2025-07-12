@@ -3,3 +3,4 @@ ecom/node_modules
 redix/node_modules
 **.log
 build
+*/node_modules
