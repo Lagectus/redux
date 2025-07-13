@@ -1,25 +1,26 @@
 import { useEffect, useState } from "react";
 import Task from "./TaskItem";
 import { Link } from "react-router-dom";
+import { useAddTaskMutation, useGetTasksQuery, useUpdateTaskMutation } from "./apiSlice";
 
 export default function Home() {
-  const [tasksList, setTasksList] = useState([]);
   const [newTask, setNewTask] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
   const [error, setError] = useState(null);
+  let { data: tasksList,isLoading,isError,refetch } = useGetTasksQuery();
+  let [addTask]= useAddTaskMutation();
+  let [updateTask] = useUpdateTaskMutation();
+  console.log("updateTask:", updateTask);
+  
+  
 
-  const BASE_URL = "http://localhost:3000";
-
-  useEffect(() => {
-    setIsLoading(true);
-    getTasks().then(() => setIsLoading(false));
-  }, []);
+  const BASE_URL = "http://localhost:5000/api";
 
   const getTasks = async () => {
     try {
       const response = await fetch(`${BASE_URL}/tasks`);
       const tasks = await response.json();
+      console.log("Fetched tasks:", tasks,BASE_URL,"ddd");
+      
       setTasksList(tasks.reverse());
     } catch (err) {
       setIsLoading(false);
@@ -28,33 +29,33 @@ export default function Home() {
     }
   };
 
-  const addTask = async (task) => {
-    await fetch(`${BASE_URL}/tasks`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(task),
-    });
-    getTasks();
-  };
+  // const addTask = async (task) => {
+  //   await fetch(`${BASE_URL}/tasks`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(task),
+  //   });
+  //   // getTasks();
+  // };
 
-  const updateTask = async ({ id, ...updatedTask }) => {
-    await fetch(`${BASE_URL}/tasks/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updatedTask),
-    });
-    getTasks();
-  };
+  // const updateTask = async ({ id, ...updatedTask }) => {
+  //   await fetch(`${BASE_URL}/tasks/${id}`, {
+  //     method: "PATCH",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(updatedTask),
+  //   });
+  //   // getTasks();
+  // };
 
   const deleteTask = async (id) => {
     await fetch(`${BASE_URL}/tasks/${id}`, {
       method: "DELETE",
     });
-    getTasks();
+    // getTasks();
   };
 
   return (

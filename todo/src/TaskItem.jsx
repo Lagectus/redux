@@ -1,5 +1,8 @@
+import { useAddTaskMutation, useGetTasksQuery } from "./apiSlice";
+
 export default function Task({ task, updateTask, deleteTask }) {
   const { id, value, completed } = task;
+  let {refetch}= useGetTasksQuery()
 
   return (
     <div className="task">
@@ -10,6 +13,8 @@ export default function Task({ task, updateTask, deleteTask }) {
         checked={completed}
         onChange={() => {
           updateTask({ id, completed: !completed });
+          refetch();
+          
         }}
       />
       <label
