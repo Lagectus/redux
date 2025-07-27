@@ -2,7 +2,7 @@ import React from 'react'
 import { memo } from 'react';
 import { useRef } from 'react'
 
-const Count = () => {
+const Count = ({count}) => {
     const renderCount = useRef(0);
     console.log(renderCount);
     
