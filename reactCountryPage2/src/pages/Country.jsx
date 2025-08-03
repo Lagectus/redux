@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useTransition } from 'react'
 import { getCountryData } from '../components/postApi';
 import CountryCard from "../components/CountryCard.jsx"
+import Loader from '../components/Loader.jsx';
 
 const Country = () => {
     const [isPending, startTransition] = useTransition();
@@ -14,6 +15,7 @@ const Country = () => {
             setCountries(res.data)
         })
      },[])
+     if(isPending)return (<><Loader/></>)
   return (
     <section className='country-section'>
         <ul className='grid grid-four-cols'>

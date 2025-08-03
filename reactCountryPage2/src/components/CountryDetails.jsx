@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useTransition } from 'react'
 import { useParams } from 'react-router-dom'
 import { getCountryIndata } from './postApi';
+import Loader from './Loader';
 
 const CountryDetails = () => {
     const params= useParams();
@@ -16,6 +17,7 @@ const CountryDetails = () => {
             
         })
     },[])
+    if(isPending) return(<Loader/>)
   return (
     <section className='card country-details-card container'>
         <div className='container-card bg-white-box'>
@@ -27,10 +29,34 @@ const CountryDetails = () => {
                     </div>
                     <div className='infoContainer'>
                         <p>
-                            <span className='card-description'> Native news</span>
-                            {}
+                            <span className='card-description'> Native names :</span>
+                            {
+                                Object.keys(country.name.nativeName).map((key)=>country.name.nativeName[key].common).join(", ")
+
+                            }
+                        </p>
+                        <p>
+                             <span className='card-description'> Population :</span>
+                             {country.population}
+                        </p>
+                        <p>
+                            <span className='card-description'> Region :</span>
+                            {country.region}
+                        </p>
+                        <p>
+                            <span className='card-description'> Sub Region :</span>
+                            {country.subregion}
+                        </p>
+                        <p>
+                            <span className='card-description'> Capital :</span>
+                            {country.capital}
+                        </p>
+                        <p>
+                            <span className='card-description'> Top level Domain :</span>
+                            {country.tld[0]}
                         </p>
                     </div>
+
                 </div>
             )}
         </div>
