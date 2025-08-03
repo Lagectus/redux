@@ -1,6 +1,7 @@
 import React, { useTransition,useState, useEffect } from 'react'
 import { getCountryData } from '../static/postApi'
 import CountryCard from "../components/CountryCard.jsx"
+import Loader from "../components/Loader.jsx"
 
 
 export const Country = () => {
@@ -15,7 +16,9 @@ export const Country = () => {
         setCountries(res.data)
       })
     },[])
+    if(isPending) return (<Loader/>)
   return (
+    <section className='country-section'>
     <ul className='grid grid-four-cols'>
       {
         countries.map((curCountry,idx)=>{
@@ -23,6 +26,7 @@ export const Country = () => {
         })
       }
     </ul>
+    </section>
   )
 }
 
