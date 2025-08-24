@@ -26,6 +26,10 @@ app.get('api/about', (req, res) => {
   res.send('This is a simple Express server.');
 });
 
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../reactcountryproject3/dist", "index.html"));
+});
+
 // Start server
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
