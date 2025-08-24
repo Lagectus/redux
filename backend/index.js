@@ -22,7 +22,7 @@ app.get('/api', (req, res) => {
 });
 
 // Another route example
-app.get('api/about', (req, res) => {
+app.get('/api/about', (req, res) => {
   res.send('This is a simple Express server.');
 });
 
