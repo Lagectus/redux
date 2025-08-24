@@ -252,3 +252,25 @@ export default function YouTubeCloneApp() {
     </div>
   );
 }
+
+// frontend development
+// html css javascript
+
+// spa (single page application) react vue angular svelte
+
+// backend 
+// nodejs python ruby go java c# php
+// express 
+// api (application programming interface)
+// rest api
+// social media app
+// mini apps 
+
+database
+// sql
+// nosql
+// mongodb
+// sql
+
+
+// aws 
